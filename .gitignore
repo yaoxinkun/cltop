@@ -1,0 +1,98 @@
+# Folders to ignore, whatever the place they are
+ 
+.metadata
+.recommenders
+.sonarlint
+classes
+hybris/bin/**/bin
+gensrc
+ 
+# Folders to ignore at the root of the repository
+hybris/log/
+ 
+# filter only custom extension
+hybris/bin/*
+!hybris/bin/custom/
+
+# Absolute path to ignore
+hybris/config/local.properties
+HYBRISCOMM6700P_0-80003492.ZIP
+ 
+# Filename patterns to ignore
+*.class
+Generated*.java
+platformhome.properties
+*testclasses.xml
+extensioninfo.xsd
+*hmc.jar
+hmc.xsd
+items.xsd
+beans.xsd
+ruleset.xml
+*.log
+base.properties
+*.bak
+
+#  Addon specific copy folders
+**/_ui/addons
+**/views/addons
+**/tld/addons
+**/tags/addons
+**/messages/addons
+**/addonsrc
+*_bof.jar
+
+hybris/bin/ext-*/
+hybris/bin/platform/
+hybris-dependencies/
+hybris-ems/
+hybris-sbg/
+hybris-Mobile-Apps-SDK/
+hybris/sampleconfigurations/
+hybris/config/
+hybris/temp/
+hybris-oms/
+META-INF/
+README
+build-tools/
+c4c-integration/
+installer/
+hybris/Mobile-Commerce-SDK/
+licenses/
+licence/
+hybris/data/
+yb2bacceleratorstorefront/
+hybris/**/build.xml
+pom.xml
+**/bin/**/bin
+**/gensrc/
+**/items.xsd
+**/beans.xsd
+**/classes/
+**/extensioninfo.xsd
+**/*hmc.jar
+**/hmc/classes/
+**/hmc.xsd
+**/platformhome.properties
+**/*-testclasses.xml
+**/jalo/
+
+#remove jrebel nature from git.
+rebel.xml
+
+**/eclipsebin/
+
+# IntelliJ files
+**/.idea/
+hybris/out/
+*.iml
+
+# Python files
+*.pyc
+
+# FrontEnd files
+
+.DS_Store
+
+hybris/bin/custom/cl/clstorefront/web/commonwebsrc
+

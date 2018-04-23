@@ -1,0 +1,93 @@
+<hybrisconfig xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='../bin/platform/resources/schemas/extensions.xsd'>
+  <extensions>
+    <path dir='${HYBRIS_BIN_DIR}' autoload='false' />
+    <extension name='mcc' />
+    <extension name='adaptivesearchsolr' />
+    <extension name='adaptivesearchbackoffice' />
+    <extension name='adaptivesearchwebservices' />
+    <extension name='adaptivesearchsamplesaddon' />
+    <extension name='b2bcommercebackoffice' />
+    <extension name='solrfacetsearchbackoffice' />
+    <extension name='ycommercewebservices' />
+    <extension name='ycommercewebservicestest' />
+    <extension name='acceleratorwebservicesaddon' />
+    <extension name='orderselfserviceaddon' />
+    <extension name='solrserver' />
+    <extension name='b2bacceleratoraddon' />
+    <extension name='commerceorgaddon' />
+    <extension name='commerceorgsamplesaddon' />
+    <extension name='customersupportbackoffice' />
+    <extension name='customerticketingaddon' />
+    <extension name='rulebuilderbackoffice' />
+    <extension name='couponbackoffice' />
+    <extension name='droolsruleengineservices' />
+    <extension name='couponfacades' />
+    <extension name='promotionenginesamplesaddon' />
+    <extension name='textfieldconfiguratortemplatebackoffice' />
+    <extension name='textfieldconfiguratortemplateaddon' />
+    <extension name='cmswebservices' />
+    <extension name='smarteditwebservices' />
+    <extension name='cmssmarteditwebservices' />
+    <extension name='permissionswebservices' />
+    <extension name='smarteditaddon' />
+    <extension name='cmssmartedit' />
+    <extension name='cmsbackoffice' />
+    <extension name='cmsmulticountrycockpit' />
+    <extension name='assistedservicestorefront' />
+    <extension name='assistedservicewebservices' />    
+    <extension name='previewpersonalizationweb' />
+    <extension name='personalizationcmsweb' />
+    <extension name='personalizationsmartedit' />
+    <extension name='personalizationpromotionssmartedit' />
+    <extension name='personalizationsampledataaddon' />
+    <extension name='personalizationpromotions' />
+    <extension name='personalizationpromotionsweb' />
+    <extension name='personalizationservicesbackoffice' />
+    <extension name='personalizationpromotionsbackoffice' />
+    <extension name='personalizationcmsbackoffice' />
+    <extension name='personalizationsearchbackoffice' />
+    <extension name='personalizationsearchsmartedit' />
+    <extension name='personalizationsearchweb' />
+    <extension name='personalizationsearchsamplesaddon' />
+
+
+    <extension name='assistedservicepromotionaddon' />
+    <extension name='assistedserviceatddtests' />
+    <extension name='promotionengineatddtests' />
+    <extension name='textfieldconfiguratortemplateatddtests' />
+    <extension name='pcmbackofficesamplesaddon' />
+    
+    <extension name='b2bcommercebackoffice' />
+    <extension name='b2badmincockpit' />
+
+    <extension name='consignmenttrackingaddon' />
+    <extension name='consignmenttrackingmock' />
+    <extension name='consignmenttrackingbackoffice' />
+    <extension name='consignmenttrackingoccaddon' />
+
+    <!--china -->
+    <extension name='chineseaddressaddon' />
+    <extension name='chinesecommerceorgaddressaddon' />
+    <extension name='chineseaddressbackoffice' />
+    <extension name='chinesestoreaddon' />
+ 
+
+    <!--cl -->
+    <extension name='clcore' />
+    <extension name='clfacades' />   
+    <extension name='clstorefront' />
+    <extension name='clinitialdata' />
+    <extension name='clcockpits' />
+    <extension name='clfulfilmentprocess' />
+    <extension name='clbackoffice' />
+    <extension name='clpromotion' />
+    <extension name='clrule' />
+    <extension name='clutils' />
+    <extension name='clinboundwebservice' />
+    <extension name='cloutboundwebservice' />
+    <extension name='cloutboundwebservicemock' />
+    <extension name='clcronjob' />
+    <extension name='clcheckout' />
+
+  </extensions>
+</hybrisconfig>

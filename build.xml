@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<project name="build" default="all">
+
+    <!-- The filename of the hybris commerce suite zip archive to install when using "ant install" -->
+    <property name="hybris.zip.package.filename" location="HYBRISCOMM6700P_0-80003492.ZIP"/>
+
+    <property name="project.code" value="cl" />
+
+    <property name="project.version" value="cl_v01.01" />
+
+    <import file="build/master.xml" />
+                     
+</project>
