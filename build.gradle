@@ -22,8 +22,6 @@ def config = {
         extName 'yacceleratorcockpits'
         extName 'yacceleratorinitialdata'
         extName 'yacceleratorfulfilmentprocess'
-        extName 'ycommercewebservices'
-        extName 'ycommercewebservicestest'
         extName 'orderselfserviceaddon'
         extName 'solrserver'
 

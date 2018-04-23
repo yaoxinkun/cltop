@@ -8,8 +8,6 @@
     <extension name='adaptivesearchsamplesaddon' />
     <extension name='b2bcommercebackoffice' />
     <extension name='solrfacetsearchbackoffice' />
-    <extension name='ycommercewebservices' />
-    <extension name='ycommercewebservicestest' />
     <extension name='acceleratorwebservicesaddon' />
     <extension name='orderselfserviceaddon' />
     <extension name='solrserver' />
