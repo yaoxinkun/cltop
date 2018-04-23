@@ -10,4 +10,7 @@
 #if($contextAdditionalElements && $contextAdditionalElements != '')
 				$contextAdditionalElements
 #end
+#if($contextJarScanner && $contextJarScanner != '')
+				$contextJarScanner
+#end
 			</Context>

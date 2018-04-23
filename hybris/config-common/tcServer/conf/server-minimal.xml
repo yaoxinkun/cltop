@@ -1,8 +1,7 @@
 
 <Server port="${tomcat.internalserver.port}" shutdown="SHUTDOWN">
 
-  <Listener className="org.apache.catalina.core.JasperListener" />
-  <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
+  <Listener className="de.hybris.tomcat.HybrisGlobalResourcesLifecycleListener" />
 
   <Listener className="com.springsource.tcserver.serviceability.rmi.JmxSocketListener"
             port="${tomcat.jmx.port}"
@@ -22,20 +21,20 @@
  		<Resource 	name="hybrisDS" 
  						auth="Container" 
  						type="javax.sql.DataSource"
-              		maxActive="${db.pool.maxActive}" 
+              		maxTotal="${db.pool.maxActive}" 
               		maxIdle="${db.pool.maxIdle}" 
-              		maxWait="${db.pool.maxWait}"
+              		maxWaitMillis="${db.pool.maxWait}"
               		testWhileIdle="${db.pool.testWhileIdle}"
 						timeBetweenEvictionRunsMillis="${db.pool.timeBetweenEvictionRunsMillis}"
 						minEvictableIdleTimeMillis="${db.pool.minEvictableIdleTimeMillis}"
 						numTestsPerEvictionRun="${db.pool.numTestsPerEvictionRun}"
 						testOnBorrow="${db.pool.testOnBorrow}"
 						testOnReturn="${db.pool.testOnReturn}"
-						whenExhaustedAction="${db.pool.whenExhaustedAction}"              
               		username="${db.username}" 
              		password="${db.password.XMLENCODED}" 
               		driverClassName="${db.driver}"
-              		url="${db.url.XMLENCODED}" />
+              		url="${db.url.XMLENCODED}"
+			useStatementFacade="${db.statement.facade}"/>
         -->
 
 		<!-- If you want to use a mail JNDI resource please set mail.fromJNDI property and uncomment following block.
@@ -63,7 +62,7 @@
     <Connector port="${tomcat.http.port}" 
     				maxHttpHeaderSize="8192"
                maxThreads="${tomcat.maxthreads}" 
-               protocol="org.apache.coyote.http11.Http11Protocol"
+               protocol="HTTP/1.1"
                executor="hybrisExecutor"
                enableLookups="false" 
                acceptCount="100"
@@ -75,7 +74,7 @@
     <Connector port="${tomcat.ssl.port}" 
     				maxHttpHeaderSize="8192"
                maxThreads="150" 
-               protocol="org.apache.coyote.http11.Http11Protocol"
+               protocol="HTTP/1.1"
                executor="hybrisExecutor"
                enableLookups="false" 
                acceptCount="${tomcat.acceptcount}"
@@ -87,6 +86,7 @@
 					secure="true" 
 					clientAuth="false"            
    				sslProtocol = "TLS" 
+   				keyAlias="${tomcat.ssl.keystore.alias}"
    				keystoreFile="${tomcat.ssl.keystore.path}"
    				keystorePass="${tomcat.ssl.keystore.password}"
                 />
@@ -99,7 +99,7 @@
 	${tomcat.connectors.ajp.plain}	
 
 
-    <Engine name="Catalina" defaultHost="localhost">
+    <Engine name="Catalina" defaultHost="localhost" startStopThreads="${tomcat.startStopThreads}">
 	
 			<Valve 	className="org.apache.catalina.valves.AccessLogValve"
              		directory="${HYBRIS_LOG_DIR}/tomcat"
@@ -111,7 +111,8 @@
       <Host 	name="localhost" 
       			appBase="webapps"
 		       	unpackWARs="true" 
-		       	autoDeploy="false">
+		       	autoDeploy="false"
+		       	startStopThreads="${tomcat.startStopThreads}">
 
 			<!-- Minimal configuration of the back office web applications allowing to administrate system while it is not initialized or not uptodate -->
 			${tomcat.minimal.webapps}
