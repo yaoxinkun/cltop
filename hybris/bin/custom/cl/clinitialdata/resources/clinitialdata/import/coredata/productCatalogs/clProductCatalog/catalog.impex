@@ -12,7 +12,7 @@
 # Import the Product Catalog and Classification Catalog
 #
 
-$productCatalog=clContentCatalog
+$productCatalog=clProductCatalog
 $classificationCatalog=clClassificationCatalog
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $languages=en,zh

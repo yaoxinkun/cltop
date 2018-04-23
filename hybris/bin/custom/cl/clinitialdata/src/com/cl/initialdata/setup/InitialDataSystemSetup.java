@@ -114,12 +114,12 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 	{
 		final List<ImportData> importData = new ArrayList<ImportData>();
 
-		final ImportData b2bImportData = new ImportData();
-		b2bImportData.setProductCatalogName(CHIMELONG);
-		b2bImportData.setContentCatalogNames(Arrays.asList(CHIMELONG));
-		b2bImportData.setStoreNames(Arrays.asList(CHIMELONG_B2C));
+		final ImportData b2cImportData = new ImportData();
+		b2cImportData.setProductCatalogName(CHIMELONG);
+		b2cImportData.setContentCatalogNames(Arrays.asList(CHIMELONG));
+		b2cImportData.setStoreNames(Arrays.asList(CHIMELONG_B2C));
 
-		importData.add(b2bImportData);
+		importData.add(b2cImportData);
 
 		getCoreDataImportService().execute(this, context, importData);
 		getEventService().publishEvent(new CoreDataImportedEvent(context, importData));

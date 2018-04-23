@@ -19,4 +19,4 @@ $contentCatalog=clContentCatalog
 
 # Create Content Catalog
 UPDATE ContentCatalog;id[unique=true];name[lang=$lang]
-;$contentCatalog;'长隆内容目录'
+;$contentCatalog;"长隆内容目录"
