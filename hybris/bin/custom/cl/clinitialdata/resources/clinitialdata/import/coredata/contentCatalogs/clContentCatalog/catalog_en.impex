@@ -19,4 +19,4 @@ $contentCatalog=clContentCatalog
 
 # Create Content Catalog
 UPDATE ContentCatalog;id[unique=true];name[lang=$lang]
-;$clContentCatalog;"Chimelong Content Catalog"
+;$contentCatalog;"Chimelong Content Catalog"
