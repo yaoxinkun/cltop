@@ -135,14 +135,14 @@
 	</bean>
 	
 	<bean id="acceleratorSiteChannelValidationStrategy" class="de.hybris.platform.acceleratorservices.site.strategies.impl.DefaultSiteChannelValidationStrategy">
-		<property name="supportedSiteChannels" ref="acceleratorSiteChannels" />
+		<property name="supportedSiteChannels" ref="clAcceleratorSiteChannels" />
 	</bean>
 	
-	<alias name="b2cAcceleratorSiteChannels" alias="acceleratorSiteChannels"/>
-	<util:set id="b2cAcceleratorSiteChannels" value-type="de.hybris.platform.commerceservices.enums.SiteChannel">
+	<util:set id="clAcceleratorSiteChannels" value-type="de.hybris.platform.commerceservices.enums.SiteChannel">
 		<ref bean="SiteChannel.B2C"/>
+		<ref bean="SiteChannel.B2B"/>
 	</util:set>
-
+	
 	<alias name="defaultRefererExcludeUrlSet" alias="refererExcludeUrlSet"/>
 	<util:set id="defaultRefererExcludeUrlSet" value-type="java.lang.String">
 		<value>/**/cart/export</value>

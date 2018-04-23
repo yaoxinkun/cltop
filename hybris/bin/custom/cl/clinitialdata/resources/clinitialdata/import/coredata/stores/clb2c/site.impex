@@ -60,7 +60,7 @@ INSERT_UPDATE SiteTheme;code[unique=true]
 ;blue
 
 # CMS Site
-INSERT_UPDATE CMSSite;uid[unique=true];theme(code);channel(code);stores(uid);contentCatalogs(id);defaultCatalog(id);defaultLanguage(isoCode);siteMapConfig(&siteMapConfigId);urlPatterns;active;previewURL;startingPage(uid,$contentCV);urlEncodingAttributes;defaultPromotionGroup(Identifier)[default=$chimelongPromoGrp]
+INSERT_UPDATE CMSSite;uid[unique=true];theme(code);channel(code);stores(uid);contentCatalogs(id);defaultCatalog(id);defaultLanguage(isoCode);siteMapConfig(&siteMapConfigId);urlPatterns;active;previewURL;startingPage(uid,$contentCV);urlEncodingAttributes;defaultPromotionGroup(Identifier)[default=$promoGrp]
 ;$siteUid;blue;B2c;$storeUid;$contentCatalog;$productCatalog;$defaultLanguage;$siteUidSiteMapConfig;(?i)^https?://[^/]+?/$siteUid[/?].*$|^https?://[^/]+?/$siteUid$;true;$storefrontContextRoot/?site=$siteUid;homepage;storefront,language;
 
 # Cart Cleanup CronJobs
