@@ -2,7 +2,6 @@
 <project name="prepare">
 	<description>
 		Prepare the hybris environment - creates config directory if not present and copies in config files from the CI Build dir if present there.
-		@author adrien.missemer
 	</description>
 
 	<target name="prepare" if="platformPresent">
