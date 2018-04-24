@@ -1,13 +1,11 @@
 <?xml version="1.0"?>
 <project name="junitinit">
 	<description>
-		Fix for PLA-9860, junit init now has the same behaviour than regular init.
-		@author adrien.missemer
+		junit init now has the same behaviour than regular init.
 	</description>
 	
     <import file="${platformhome}/resources/ant/antmacros.xml" />
 
-	 <!-- fix for PLA-9860 -->
    <target name="junitinit" description="Initializes JUnit tenant">
        <sequential>
            <echo message="Compiling Ant Performable..."/>
