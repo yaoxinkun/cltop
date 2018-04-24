@@ -44,17 +44,31 @@ INSERT_UPDATE Category ; code[unique=true] ; allowedPrincipals(uid)[default='cus
                        
 # Insert Category Structure
 INSERT_UPDATE CategoryCategoryRelation ; $categories ; $supercategories 
-                                       ; park1       ; park,clgz        
-                                       ; park2       ; park,clgz        
-                                       ; park3       ; park,clgz        
-                                       ; park4       ; park,clgz        
-                                       ; perform1    ; perform,clgz     
-                                       ; hotel1      ; hotel,clgz       
-                                       ; hotel2      ; hotel,clgz       
-                                       ; hotel3      ; hotel,clgz       
-                                       ; park6       ; park,clzh        
-                                       ; perform2    ; perform,clzh     
-                                       ; hotel4      ; hotel,clzh       
-                                       ; hotel5      ; hotel,clzh       
-                                       ; hotel6      ; hotel,clzh       
-                                       ; hotel7      ; hotel,clzh       
+                                       ; park1       ; park             
+                                       ; park1       ; gz               
+                                       ; park2       ; park             
+                                       ; park2       ; gz               
+                                       ; park3       ; park             
+                                       ; park3       ; gz               
+                                       ; park4       ; park             
+                                       ; park4       ; gz               
+                                       ; perform1    ; perform          
+                                       ; perform1    ; gz               
+                                       ; hotel1      ; hotel            
+                                       ; hotel1      ; gz               
+                                       ; hotel2      ; hotel            
+                                       ; hotel2      ; gz               
+                                       ; hotel3      ; hotel            
+                                       ; hotel3      ; gz               
+                                       ; park6       ; park             
+                                       ; park6       ; zh               
+                                       ; perform2    ; perform          
+                                       ; perform2    ; zh               
+                                       ; hotel4      ; hotel            
+                                       ; hotel4      ; zh               
+                                       ; hotel5      ; hotel            
+                                       ; hotel5      ; zh               
+                                       ; hotel6      ; hotel            
+                                       ; hotel6      ; zh               
+                                       ; hotel7      ; hotel            
+                                       ; hotel7      ; zh               

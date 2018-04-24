@@ -37,6 +37,19 @@ INSERT_UPDATE Currency;isocode[unique=true];conversion;digits;symbol
 ;JPY;120;0;¥
 ;CNY;1,20;2;¥
 
+# SiteMap Language Currencies
+INSERT_UPDATE SiteMapLanguageCurrency;&siteMapLanguageCurrency;language(isoCode)[unique=true];currency(isocode)[unique=true];
+;enUsd;en;USD
+;enJpy;en;JPY
+;enGbp;en;GBP
+;enEur;en;EUR
+;enCny;en;CNY
+;zhUsd;zh;USD
+;zhJpy;zh;JPY
+;zhGbp;zh;GBP
+;zhEur;zh;EUR
+;zhCny;zh;CNY
+
 # Vendor
 INSERT_UPDATE Vendor;code[unique=true];name
 ;default;Default Vendor
@@ -57,6 +70,10 @@ INSERT_UPDATE Warehouse;code[unique=true];name;vendor(code)[default=default];def
 ;clzhhqwhotel;CL ZH HQWHotel;
 ;clzhpenguinhotel;CL ZH PenguinHotel;
 ;clzhcircushotel;CL ZH CircusHotel;
+
+# Disable preview for email pages
+UPDATE CMSPageType;code[unique=true];previewDisabled
+;EmailPage;true
 
 # Titles
 INSERT_UPDATE Title;code[unique=true]
@@ -108,6 +125,8 @@ INSERT_UPDATE Tax;code[unique=true];value;currency(isocode)
 ;uk-vat-half;5
 ;us-sales-tax-full;0
 ;ca-sales-tax-full;0
+;cn-sales-tax-full;0
 
 INSERT_UPDATE ServicelayerJob;code[unique=true];springId[unique=true]
 ;cartRemovalJob;cartRemovalJob
+;siteMapMediaJob;siteMapMediaJob

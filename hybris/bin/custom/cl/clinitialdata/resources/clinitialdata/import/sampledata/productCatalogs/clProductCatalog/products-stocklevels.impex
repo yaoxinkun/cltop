@@ -13,7 +13,7 @@
 # Macros / Replacement Parameter definitions
 $productCatalog=clProductCatalog
 $productCatalogName=cl Product Catalog
-$vendor=__VENDOR_NAME__
+$vendor=default
 
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 

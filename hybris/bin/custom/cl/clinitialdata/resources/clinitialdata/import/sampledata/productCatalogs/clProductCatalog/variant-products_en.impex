@@ -19,4 +19,3 @@ $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[defa
 # Language
 $lang=en
 
-UPDATE Product;code[unique=true];$catalogVersion;name[lang=$lang];summary[lang=$lang];description[lang=$lang];ApparelStyleVariantProduct.style[lang=$lang];ApparelSizeVariantProduct.size[lang=$lang]

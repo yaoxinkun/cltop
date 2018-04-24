@@ -17,7 +17,7 @@ $customergroup=customergroup
 $defaultPassword=12341234
 
 # Create Customer Group
-INSERT_UPDATE Usergroup;uid[unique=true];groups(uid)[mode=append]
+INSERT_UPDATE UserGroup;uid[unique=true];groups(uid)[mode=append]
 ;$regulargroup;customergroup
 
 # Customers
