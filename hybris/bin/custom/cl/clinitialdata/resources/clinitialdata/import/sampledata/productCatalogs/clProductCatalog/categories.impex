@@ -9,17 +9,52 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 # ImpEx for Importing Categories
-
+ 
 # Macros / Replacement Parameter definitions
 $productCatalog=clProductCatalog
 $productCatalogName=cl Product Catalog
-
+ 
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $supercategories=source(code, $catalogVersion)[unique=true]
 $categories=target(code, $catalogVersion)[unique=true]
-
+ 
 # Insert Categories
-INSERT_UPDATE Category;code[unique=true];allowedPrincipals(uid)[default='customergroup'];$catalogVersion
-
+INSERT_UPDATE Category ; code[unique=true] ; allowedPrincipals(uid)[default='customergroup'] ; $catalogVersion 
+                       ; gz                ;                                                 ;                 
+                       ; zh                ;                                                 ;                 
+                       ; park              ;                                                 ;                 
+                       ; perform           ;                                                 ;                 
+                       ; hotel             ;                                                 ;                 
+                       ; restaurant        ;                                                 ;                 
+                       ; retail            ;                                                 ;                 
+                       ; park1             ;                                                 ;                 
+                       ; park2             ;                                                 ;                 
+                       ; park3             ;                                                 ;                 
+                       ; park4             ;                                                 ;                 
+                       ; perform1          ;                                                 ;                 
+                       ; hotel1            ;                                                 ;                 
+                       ; hotel2            ;                                                 ;                 
+                       ; hotel3            ;                                                 ;                 
+                       ; park6             ;                                                 ;                 
+                       ; perform2          ;                                                 ;                 
+                       ; hotel4            ;                                                 ;                 
+                       ; hotel5            ;                                                 ;                 
+                       ; hotel6            ;                                                 ;                 
+                       ; hotel7            ;                                                 ;                 
+                       
 # Insert Category Structure
-INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+INSERT_UPDATE CategoryCategoryRelation ; $categories ; $supercategories 
+                                       ; park1       ; park,clgz        
+                                       ; park2       ; park,clgz        
+                                       ; park3       ; park,clgz        
+                                       ; park4       ; park,clgz        
+                                       ; perform1    ; perform,clgz     
+                                       ; hotel1      ; hotel,clgz       
+                                       ; hotel2      ; hotel,clgz       
+                                       ; hotel3      ; hotel,clgz       
+                                       ; park6       ; park,clzh        
+                                       ; perform2    ; perform,clzh     
+                                       ; hotel4      ; hotel,clzh       
+                                       ; hotel5      ; hotel,clzh       
+                                       ; hotel6      ; hotel,clzh       
+                                       ; hotel7      ; hotel,clzh       

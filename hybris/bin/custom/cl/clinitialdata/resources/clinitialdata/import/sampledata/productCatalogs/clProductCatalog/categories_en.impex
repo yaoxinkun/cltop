@@ -9,15 +9,35 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 # ImpEx for Importing Categories
-
+ 
 # Macros / Replacement Parameter definitions
 $productCatalog=clProductCatalog
 $productCatalogName=cl Product Catalog
-
+ 
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-
+ 
 # Language
 $lang=en
-
-# Create Categories
-UPDATE Category;code[unique=true];$catalogVersion;name[lang=$lang]
+ 
+UPDATE Category ; code[unique=true] ; $catalogVersion ; name[lang=$lang]                       ; description[lang=$lang] 
+                ; gz                ;                 ; GuangZhou                              ;                         
+                ; zh                ;                 ; ZhuHai                                 ;                         
+                ; park              ;                 ; Park                                   ;                         
+                ; perform           ;                 ; Perform                                ;                         
+                ; hotel             ;                 ; Hotel                                  ;                         
+                ; restaurant        ;                 ; Restaurant                             ;                         
+                ; retail            ;                 ; Retail                                 ;                         
+                ; park1             ;                 ; GuangZhou Chimelong Happy World        ;                         
+                ; park2             ;                 ; GuangZhou Chimelong Wild Animal World  ;                         
+                ; park3             ;                 ; GuangZhou Chimelong Water World        ;                         
+                ; park4             ;                 ; GuangZhou Fly Bird World               ;                         
+                ; perform1          ;                 ; GuangZhou Chimelong Inter Circus World ;                         
+                ; hotel1            ;                 ; GuangZhou Chimelong Hotel              ;                         
+                ; hotel2            ;                 ; GuangZhou Chimelong Panda Hotel        ;                         
+                ; hotel3            ;                 ; GuangZhou Chimelong XiangJiang Hotel   ;                         
+                ; park6             ;                 ; ZhuHai Chimelong Ocean Kindom          ;                         
+                ; perform2          ;                 ; ZhuHai Chimelong HengQin Circus City   ;                         
+                ; hotel4            ;                 ; ZhuHai Chimelong HengQinWan Hotel      ;                         
+                ; hotel5            ;                 ; ZhuHai Chimelong Penguin Hotel         ;                         
+                ; hotel6            ;                 ; ZhuHai Chimelong Circus Hotel          ;                         
+                ; hotel7            ;                 ; ZhuHai Chimelong YinHai Hotel          ;                         
