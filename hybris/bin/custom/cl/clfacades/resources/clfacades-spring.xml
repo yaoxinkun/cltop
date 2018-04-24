@@ -54,11 +54,6 @@
 		<property name="mediaContainerService" ref="mediaContainerService"/>
 		<property name="typeService" ref="typeService"/>
 		<property name="imageFormatMapping" ref="imageFormatMapping"/>
-		<property name="variantAttributeMapping">
-			<map>
-				<entry key="ApparelStyleVariantProduct.style" value="styleSwatch"/>
-			</map>
-		</property>
 	</bean>
 
 
