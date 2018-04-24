@@ -51,8 +51,6 @@
 	<import file="resources/ant/prepare.xml"/>
 	<import file="resources/ant/hybris_build_targets.xml"/>
 	<import file="resources/ant/quality.xml"/>
-	<import file="resources/ant/package.xml"/>
-	<import file="resources/ant/packaging.xml"/>
 	<import file="resources/ant/testing.xml"/>
 	<import file="resources/ant/jenkins_targets.xml"/>
 	
