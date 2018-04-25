@@ -1,3 +1,6 @@
+$WeekDays=MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY
+$WeekendDays=SATURDAY,SUNDAY
+ 
 INSERT_UPDATE DateStrategy ; code[unique=true]          ; dayOfWeeks(code)       
                            ; normalStrategyWeekDays     ; $WeekDays              
                            ; normalStrategyWeekendsDays ; $WeekendDays           
@@ -9,3 +12,8 @@ INSERT_UPDATE DateRange ; startingDate[dateformat='yyyy-MM-dd'][unique=true] ; e
                         ; 2018-05-08                                         ; 2020-12-31                                       ; normalStrategyWeekDays          
                         ; 2018-05-08                                         ; 2020-12-31                                       ; normalStrategyWeekendsDays      
                         ; 2018-05-01                                         ; 2018-05-07                                       ; 51holiday                       
+                        
+INSERT_UPDATE CircusShowTime ; code[unique=true] ; startTime ; endTime 
+                             ; cst1730           ; 17:30     ; 18:50   
+                             ; cst1930           ; 19:30     ; 20:50   
+                             
