@@ -28,17 +28,6 @@
 	       parent="abstractCoreSystemSetup"/>
 
 	<!-- Solr field value providers -->
-
-	<bean id="volumeAwareProductPriceValueProvider" class="com.cl.core.search.solrfacetsearch.provider.impl.VolumeAwareProductPriceValueProvider"  parent="abstractPropertyFieldValueProvider">
-        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
-        <property name="priceService" ref="priceService"/>
-        <property name="commonI18NService" ref="commonI18NService"/>
-        <property name="sessionService" ref="sessionService"/>
-        <property name="userService" ref="userService"/>
-        <property name="priceComparator" ref="volumePriceComparator"/>
-        <property name="catalogVersionService" ref="catalogVersionService"/>
-    </bean>
-
     <bean id="volumePriceComparator" class="com.cl.core.comparators.VolumeAwarePriceInformationComparator" scope="singleton"/>
 
     <bean id="productVolumePricesProvider" class="com.cl.core.search.solrfacetsearch.provider.impl.ProductVolumePricesProvider"  parent="abstractPropertyFieldValueProvider">
@@ -46,13 +35,13 @@
         <property name="priceService" ref="priceService"/>
     </bean>
 
-
 	<bean id="abstractCategoryCodeValueProvider" abstract="true"
 	      class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.CategoryCodeValueProvider"
 	      parent="abstractPropertyFieldValueProvider" >
 		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
 		<property name="commonI18NService" ref="commonI18NService"/>
 	</bean>
+	
 	<bean id="abstractCategoryNameValueProvider" abstract="true"
 	      class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.CategoryNameValueProvider"
 	      parent="abstractPropertyFieldValueProvider" >
@@ -98,7 +87,6 @@
 		<property name="promotionsService" ref="promotionsService"/>
 		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
 	</bean>
-
 
 	<bean id="genderFacetDisplayNameProvider"
 	      class="com.cl.core.search.solrfacetsearch.provider.impl.GenderFacetDisplayNameProvider"
@@ -303,7 +291,6 @@
 		<property name="siteBaseUrlResolutionService" ref="siteBaseUrlResolutionService"/>
 		<property name="cmsSiteService" ref="cmsSiteService"/>
 	</bean>
-
 
 	<!-- Sales quote process actions -->
 

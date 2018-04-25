@@ -27,21 +27,28 @@ INSERT_UPDATE Category ; code[unique=true] ; allowedPrincipals(uid)[default='cus
                        ; hotel             ;                                                 ;                 
                        ; restaurant        ;                                                 ;                 
                        ; retail            ;                                                 ;                 
-                       ; park1             ;                                                 ;                 
-                       ; park2             ;                                                 ;                 
-                       ; park3             ;                                                 ;                 
-                       ; park4             ;                                                 ;                 
                        ; perform1          ;                                                 ;                 
-                       ; hotel1            ;                                                 ;                 
-                       ; hotel2            ;                                                 ;                 
-                       ; hotel3            ;                                                 ;                 
-                       ; park6             ;                                                 ;                 
                        ; perform2          ;                                                 ;                 
-                       ; hotel4            ;                                                 ;                 
-                       ; hotel5            ;                                                 ;                 
-                       ; hotel6            ;                                                 ;                 
-                       ; hotel7            ;                                                 ;                 
                        
+INSERT_UPDATE Park ; code[unique=true] ; allowedPrincipals(uid)[default='customergroup'] ; $catalogVersion 
+                   ; park1             ;                                                 ;                 
+                   ; park2             ;                                                 ;                 
+                   ; park3             ;                                                 ;                 
+                   ; park4             ;                                                 ;                 
+                   ; park5             ;                                                 ;                 
+                   
+INSERT_UPDATE Hotel ; code[unique=true] ; allowedPrincipals(uid)[default='customergroup'] ; $catalogVersion 
+                    ; hotel1            ;                                                 ;                 
+                    ; hotel2            ;                                                 ;                 
+                    ; hotel3            ;                                                 ;                 
+                    ; hotel4            ;                                                 ;                 
+                    ; hotel5            ;                                                 ;                 
+                    ; hotel6            ;                                                 ;                 
+                    ; hotel7            ;                                                 ;                 
+                    
+INSERT_UPDATE Restaurant ; code[unique=true] ; allowedPrincipals(uid)[default='customergroup'] ; $catalogVersion 
+                         ; baihu             ;                                                 ;                 
+                         
 # Insert Category Structure
 INSERT_UPDATE CategoryCategoryRelation ; $categories ; $supercategories 
                                        ; park1       ; park             
@@ -60,8 +67,8 @@ INSERT_UPDATE CategoryCategoryRelation ; $categories ; $supercategories
                                        ; hotel2      ; gz               
                                        ; hotel3      ; hotel            
                                        ; hotel3      ; gz               
-                                       ; park6       ; park             
-                                       ; park6       ; zh               
+                                       ; park5       ; park             
+                                       ; park5       ; zh               
                                        ; perform2    ; perform          
                                        ; perform2    ; zh               
                                        ; hotel4      ; hotel            

@@ -128,10 +128,10 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 
 		importStore(ClInitialDataConstants.EXTENSIONNAME, CHIMELONG_OTA);
 
+		importData.forEach(
+				innerImportData -> importDateRange(innerImportData.getProductCatalogName(), ClInitialDataConstants.EXTENSIONNAME));
 		getSampleDataImportService().execute(this, context, importData);
 		getEventService().publishEvent(new SampleDataImportedEvent(context, importData));
-
-
 	}
 
 	protected void importStore(final String extensionName, final String storeName)
@@ -141,9 +141,13 @@ public class InitialDataSystemSetup extends AbstractSystemSetup
 		getSetupImpexService().importImpexFile(String.format("/%s/import/coredata/stores/%s/site.impex", extensionName, storeName),
 				false);
 
-		//		getSetupImpexService().importImpexFile(String.format("/%s/import/coredata/stores/%s/solr.impex", extensionName, storeName),
-		//				false);
+		//		getSetupImpexService().importImpexFile(String.format("/%s/import/coredata/stores/%s/solr.impex", extensionName, storeName),false);
+	}
 
+	protected void importDateRange(final String productCatalogName, final String extensionName)
+	{
+		getSetupImpexService().importImpexFile(String.format(
+				"/%s/import/sampledata/productCatalogs/%sProductCatalog/dateranges.impex", extensionName, productCatalogName), false);
 	}
 
 	public CoreDataImportService getCoreDataImportService()

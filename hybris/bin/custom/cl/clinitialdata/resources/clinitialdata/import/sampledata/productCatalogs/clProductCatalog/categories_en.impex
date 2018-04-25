@@ -35,9 +35,10 @@ UPDATE Category ; code[unique=true] ; $catalogVersion ; name[lang=$lang]        
                 ; hotel1            ;                 ; GuangZhou Chimelong Hotel              ;                         
                 ; hotel2            ;                 ; GuangZhou Chimelong Panda Hotel        ;                         
                 ; hotel3            ;                 ; GuangZhou Chimelong XiangJiang Hotel   ;                         
-                ; park6             ;                 ; ZhuHai Chimelong Ocean Kindom          ;                         
+                ; park5             ;                 ; ZhuHai Chimelong Ocean Kindom          ;                         
                 ; perform2          ;                 ; ZhuHai Chimelong HengQin Circus City   ;                         
                 ; hotel4            ;                 ; ZhuHai Chimelong HengQinWan Hotel      ;                         
                 ; hotel5            ;                 ; ZhuHai Chimelong Penguin Hotel         ;                         
                 ; hotel6            ;                 ; ZhuHai Chimelong Circus Hotel          ;                         
                 ; hotel7            ;                 ; ZhuHai Chimelong YinHai Hotel          ;                         
+                ; baihu             ;                 ; BaiHu Restaurant                       ;                         
