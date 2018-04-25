@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project name="master">
 	<description>
-		Master build ant project for Hybris implementations at PwC SDC
+		Master build ant project for Hybris implementations at Chimelong
 	</description>
 	<property name="environment" value="local"/>
 	<property location="./build" name="BUILD_HOME"/>
@@ -23,7 +23,7 @@
 		<format pattern="yyyy_MM_dd_hh" property="build.date" unit="hour"/>
 	</tstamp>
 	
-	<property name="release.description" value="SAP AMS Team Build"/>
+	<property name="release.description" value="Chimelong Build"/>
 	<property name="release.version" value="${build.date}"/>
 	<property name="release.date" value="${build.date}"/>
 	
@@ -37,6 +37,9 @@
 	<!-- import hybris macros after configuration has been set, allow to fail for unzip tasks, etc. -->
 	<macrodef description="Updates the configuration" name="config">
 		<sequential>
+			<!-- required in 5.0.2.1 because of antmacros.xml:99 -->
+			<copy file="${BUILD_HOME}/config/customize/platform/lib/dbdriver/mysql-connector-java-5.1.23-bin.jar" todir="${platformhome}/lib/dbdriver/" verbose="true"/>
+			<copy file="${BUILD_HOME}/config/customize/platform/lib/dbdriver/ojdbc6-11.2.0.3.jar" todir="${platformhome}/lib/dbdriver/" verbose="true"/>
 			<available file="${platformhome}/build.xml" property="platformPresent"/>
 			<ant antfile="prepare.xml" dir="build/resources/ant" target="prepare"/>
 		</sequential>
@@ -47,6 +50,9 @@
 	<import file="${platformhome}/resources/ant/antmacros.xml" optional="true"/>
 	<import file="resources/ant/prepare.xml"/>
 	<import file="resources/ant/hybris_build_targets.xml"/>
+	<import file="resources/ant/quality.xml"/>
+	<import file="resources/ant/testing.xml"/>
+	<import file="resources/ant/jenkins_targets.xml"/>
 	
 	<condition property="hybrisZipFileIsKnown">
 		<or>
@@ -100,7 +106,6 @@
 		<antcall target="customize"/>
 	</target>
 
-	<!-- fix for PLA-9860 -->
 	<target description="Initializes JUnit tenant" name="junitinit">
 		<ant antfile="junitinit.xml" dir="${BUILD_HOME}/resources/ant/" inheritrefs="true" target="junitinit"/>
 	</target>

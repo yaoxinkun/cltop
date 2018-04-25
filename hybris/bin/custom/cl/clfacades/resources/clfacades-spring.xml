@@ -68,9 +68,9 @@
 		</property>
 	</bean>
 
-	<alias name="defaultGenderDataPopulator" alias="genderDataPopulator" />
-	<bean id="defaultGenderDataPopulator" class="com.cl.facades.populators.GenderDataPopulator">
-		<property name="typeService" ref="typeService" />
+	<alias name="defaultGenderDataPopulator" alias="genderDataPopulator"/>
+	<bean id="defaultGenderDataPopulator" class="com.cl.facades.populators.GenderDataPopulator" >
+		<property name="typeService" ref="typeService"/>
 	</bean>
 
 	<!-- accelerator Image Format Mappings -->

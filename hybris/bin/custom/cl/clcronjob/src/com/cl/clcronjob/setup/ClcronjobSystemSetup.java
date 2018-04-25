@@ -10,34 +10,13 @@
  */
 package com.cl.clcronjob.setup;
 
-import static com.cl.clcronjob.constants.ClcronjobConstants.PLATFORM_LOGO_CODE;
-
 import de.hybris.platform.core.initialization.SystemSetup;
 
-import java.io.InputStream;
-
 import com.cl.clcronjob.constants.ClcronjobConstants;
-import com.cl.clcronjob.service.ClcronjobService;
 
 
 @SystemSetup(extension = ClcronjobConstants.EXTENSIONNAME)
 public class ClcronjobSystemSetup
 {
-	private final ClcronjobService clcronjobService;
-
-	public ClcronjobSystemSetup(final ClcronjobService clcronjobService)
-	{
-		this.clcronjobService = clcronjobService;
-	}
-
-	@SystemSetup(process = SystemSetup.Process.INIT, type = SystemSetup.Type.ESSENTIAL)
-	public void createEssentialData()
-	{
-		clcronjobService.createLogo(PLATFORM_LOGO_CODE);
-	}
-
-	private InputStream getImageStream()
-	{
-		return ClcronjobSystemSetup.class.getResourceAsStream("/clcronjob/sap-hybris-platform.png");
-	}
+	//TODO
 }

@@ -35,7 +35,7 @@
                 </replace>
 		<ant dir="${platformhome}" target="production" inheritrefs="true"/>
                 <replace file="${platformhome}/tomcat/bin/wrapper.sh" value="#RUN_AS_USER=">
-                    <replacetoken>RUN_AS_USER=hybris</replacetoken>
+                    <replacetoken>RUN_AS_USER=hybrisadmin</replacetoken>
                 </replace>
 	</target>
 	<target name="server" description="Configures hybris Server and restart if running">
