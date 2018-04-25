@@ -35,9 +35,10 @@ UPDATE Category ; code[unique=true] ; $catalogVersion ; description[lang=$lang] 
                 ; hotel1            ;                 ;                         ; 广州长隆酒店           
                 ; hotel2            ;                 ;                         ; 广州长隆熊猫酒店         
                 ; hotel3            ;                 ;                         ; 广州长隆香江酒店         
-                ; park6             ;                 ;                         ; 珠海长隆海洋王国         
+                ; park5             ;                 ;                         ; 珠海长隆海洋王国         
                 ; perform2          ;                 ;                         ; 珠海长隆横琴国际马戏城      
                 ; hotel4            ;                 ;                         ; 珠海长隆横琴湾酒店        
                 ; hotel5            ;                 ;                         ; 珠海长隆企鹅酒店         
                 ; hotel6            ;                 ;                         ; 珠海长隆马戏酒店         
                 ; hotel7            ;                 ;                         ; 珠海长隆迎海公寓         
+                ; baihu             ;                 ;                         ; 白虎餐厅             

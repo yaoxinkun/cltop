@@ -13,11 +13,37 @@
 # Macros / Replacement Parameter definitions
 $productCatalog=clProductCatalog
 $productCatalogName=cl Product Catalog
-
+ 
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-
+ 
 # Language
 $lang=en
-
+ 
 # Update allProducts with localisations
-UPDATE Product;code[unique=true];$catalogVersion;name[lang=$lang];summary[lang=$lang];description[lang=$lang]
+INSERT_UPDATE AccommodationProduct ; code[unique=true] ; name[lang=$lang] 
+                                   ; lhf001            ; TigerTypeRoom    
+                                   
+INSERT_UPDATE AccommodationNetProduct ; code[unique=true] ; name[lang=$lang] 
+                                      ; lhf0011           ; TigerTypeNetRoom 
+                                      
+INSERT_UPDATE ParkMealProduct ; code[unique=true] ; name[lang=$lang] 
+                              ; pm001             ; ParkMeal1        
+                              
+INSERT_UPDATE ParkAddonProduct ; code[unique=true] ; name[lang=$lang] 
+                               ; pa001             ; ParkAddon1       
+                               
+INSERT_UPDATE HotelMealProduct ; code[unique=true] ; name[lang=$lang] 
+                               ; hm001             ; HotelMeal1       
+                               
+INSERT_UPDATE HotelAddonProduct ; code[unique=true] ; name[lang=$lang] 
+                                ; ha001             ; HotelAddon1      
+
+INSERT_UPDATE ParkBundleProduct ; code[unique=true] ; name[lang=$lang] 
+                                ; ha002             ; HappyWorld+AnimalWordWeekdaysBundle   
+                                ; hb002             ; HappyWorld+BirdWordWeekdaysBundle      
+                                ; ha0021            ; HappyWorld+AnimalWordWeekenddaysBundle    
+                                ; hb0021            ; HappyWorld+BirdWorddWeekenddaysBundle     
+
+INSERT_UPDATE HotelBundleProduct ; code[unique=true] ; name[lang=$lang] 
+                                 ; cjt21             ; ChimelongHotelBundle1           
+                                 

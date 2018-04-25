@@ -1,0 +1,6 @@
+$lang=en
+ 
+INSERT_UPDATE DateStrategy ; code[unique=true]          ; name[lang=$lang] 
+                           ; normalStrategyWeekDays     ; WeekDays         
+                           ; normalStrategyWeekendsDays ; WeekendDays      
+                           ; 51holiday                  ; 51Holiday        

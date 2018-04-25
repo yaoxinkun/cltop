@@ -9,20 +9,46 @@
 # license agreement you entered into with SAP.
 # -----------------------------------------------------------------------
 # ImpEx for Importing Products Stock Levels and Warehouses
-
+ 
 # Macros / Replacement Parameter definitions
 $productCatalog=clProductCatalog
 $productCatalogName=cl Product Catalog
 $vendor=default
-
+ 
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-
-
-INSERT_UPDATE Vendor;code[unique=true]
-#;$vendor
-
-INSERT_UPDATE Warehouse;code[unique=true];vendor(code);default[default=true]
-
-INSERT_UPDATE StockLevel;available;warehouse(code)[unique=true];inStockStatus(code);maxPreOrder;maxStockLevelHistoryCount;overSelling;preOrder;productCode[unique=true];reserved
-
-UPDATE Product;code[unique=true];$catalogVersion;stockLevels(productCode,warehouse(code));vendors(code)
+ 
+ 
+ 
+INSERT_UPDATE StockLevel ; productCode[unique=true] ; warehouse(code)[unique=true,default=default] ; available ; inStockStatus(code) ; maxPreOrder[default=1] ; maxStockLevelHistoryCount[default=-1] ; overSelling[default=0] ; preOrder[default=0] ; reserved[default=0] 
+                         ; h001                     ; default                                      ; 9999      ; notSpecified        
+                         ; h002                     ; default                                      ; 9999      ; notSpecified        
+                         ; h003                     ; default                                      ; 9999      ; notSpecified        
+                         ; a001                     ; default                                      ; 9999      ; notSpecified        
+                         ; a002                     ; default                                      ; 9999      ; notSpecified        
+                         ; a003                     ; default                                      ; 9999      ; notSpecified        
+                         ; b001                     ; default                                      ; 9999      ; notSpecified        
+                         ; b002                     ; default                                      ; 9999      ; notSpecified        
+                         ; b003                     ; default                                      ; 9999      ; notSpecified        
+                         ; h0011                    ; default                                      ; 9999      ; notSpecified        
+                         ; h0021                    ; default                                      ; 9999      ; notSpecified        
+                         ; h0031                    ; default                                      ; 9999      ; notSpecified        
+                         ; a0011                    ; default                                      ; 9999      ; notSpecified        
+                         ; a0021                    ; default                                      ; 9999      ; notSpecified        
+                         ; a0031                    ; default                                      ; 9999      ; notSpecified        
+                         ; b0011                    ; default                                      ; 9999      ; notSpecified        
+                         ; b0021                    ; default                                      ; 9999      ; notSpecified        
+                         ; b0031                    ; default                                      ; 9999      ; notSpecified        
+                         ; ha002                    ; default                                      ; 9999      ; notSpecified        
+                         ; hb002                    ; default                                      ; 9999      ; notSpecified        
+                         ; ha0021                   ; default                                      ; 9999      ; notSpecified        
+                         ; hb0021                   ; default                                      ; 9999      ; notSpecified        
+                         
+                         ; cv001a                   ; default                                      ; 9999      ; notSpecified        
+                         ; cv001b                   ; default                                      ; 9999      ; notSpecified        
+                         ; cv002a                   ; default                                      ; 9999      ; notSpecified        
+                         ; cv002b                   ; default                                      ; 9999      ; notSpecified        
+                         ; cv0011a                  ; default                                      ; 9999      ; notSpecified        
+                         ; cv0011b                  ; default                                      ; 9999      ; notSpecified        
+                         ; cv0021a                  ; default                                      ; 9999      ; notSpecified        
+                         ; cv0021b                  ; default                                      ; 9999      ; notSpecified        
+                         

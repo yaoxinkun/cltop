@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!--
- [y] hybris Platform
+<!-- [y] hybris Platform Copyright (c) 2018 SAP SE or an SAP affiliate company. 
+	All rights reserved. This software is the confidential and proprietary information 
+	of SAP ("Confidential Information"). You shall not disclose such Confidential 
+	Information and shall use it only in accordance with the terms of the license 
+	agreement you entered into with SAP. -->
+<extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
 
- Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
-
- This software is the confidential and proprietary information of SAP
- ("Confidential Information"). You shall not disclose such Confidential
- Information and shall use it only in accordance with the terms of the
- license agreement you entered into with SAP.
---><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
-
-	<extension abstractclassprefix="Generated" classprefix="ClCore" managername="ClCoreManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="clcore">
+	<extension abstractclassprefix="Generated" classprefix="ClCore"
+		managername="ClCoreManager" managersuperclass="de.hybris.platform.jalo.extension.Extension"
+		name="clcore">
 
 		<!-- you should add all required extensions to this list, except platform 
 			extensions which are automatically required -->
-		<requires-extension name="acceleratorcms"/>
-		<requires-extension name="solrserver"/>
+		<requires-extension name="acceleratorcms" />
+		<requires-extension name="solrserver" />
+		<requires-extension name="b2bcommerce" />
+		<coremodule generated="true" manager="com.cl.core.jalo.ClCoreManager"
+			packageroot="com.cl.core" />
 
-		<coremodule generated="true" manager="com.cl.core.jalo.ClCoreManager" packageroot="com.cl.core"/>
-
-		
-		
-		<meta key="backoffice-module" value="true"/>
+		<meta key="backoffice-module" value="true" />
 	</extension>
 
 </extensioninfo>
