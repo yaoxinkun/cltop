@@ -17,6 +17,9 @@
 		<requires-extension name="commerceservices"/>
 		<requires-extension name="commercewebservicescommons"/>
 		<requires-extension name="webservicescommons"/>
+		
+		
+		<requires-extension name="clfacades" />
 	
 		<coremodule generated="true" manager="de.hybris.platform.jalo.extension.GenericManager" packageroot="com.cl.clinboundwebservice"/>
 
