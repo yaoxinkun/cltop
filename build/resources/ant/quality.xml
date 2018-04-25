@@ -53,8 +53,8 @@
 
 		<!-- Run FindBugs. -->
 		<mkdir dir="${report.findbugs.dir}" />
-		<findbugs home="${findbugs.home.dir}" workHard="true" output="xml:withMessages" outputFile="${report.findbugs.dir}/findbugs_${findbugs.extension.name}.xml" excludeFilter="build/resources/ant/hybris_findbugsfilter.xml">						
-			<class location="${HYBRIS_CUSTOM_DIR}/${findbugs.extension.name}/classes" />
+		<findbugs home="${findbugs.home.dir}" workHard="true" output="html" outputFile="${report.findbugs.dir}/findbugs_${findbugs.extension.name}.html" excludeFilter="build/resources/ant/hybris_findbugsfilter.xml">						
+			<class location="${HYBRIS_CUSTOM_DIR}/cl/${findbugs.extension.name}/classes" />
  			<auxClasspath>
 				<fileset dir="${findbugs.home.dir}/lib" includes="*.jar" />
 			</auxClasspath>					
@@ -143,8 +143,8 @@
 		<antcall target="custompmd"/>
 		<antcall target="cpd"/>
 		<antcall target="findbugs"/>	
-        <antcall target="jacocoreport"/>
-		<antcall target="sonar"/>
+        	<antcall target="jacocoreport"/>
+		<!-- <antcall target="sonar"/> -->
 	</target>
 	
 	<!-- Running junits and collecting code coverage-->
