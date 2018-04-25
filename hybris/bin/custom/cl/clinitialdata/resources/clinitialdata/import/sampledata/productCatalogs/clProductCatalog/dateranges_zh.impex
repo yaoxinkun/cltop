@@ -4,3 +4,7 @@ INSERT_UPDATE DateStrategy ; code[unique=true]          ; name[lang=$lang]
                            ; normalStrategyWeekDays     ; 平日               
                            ; normalStrategyWeekendsDays ; 平日周末             
                            ; 51holiday                  ; 五一劳动节            
+                           
+INSERT_UPDATE CircusShowTime ; code[unique=true] ; name[lang=$lang] 
+                             ; cst1730           ; 17:30~18:50      
+                             ; cst1930           ; 19:30~20:50      
