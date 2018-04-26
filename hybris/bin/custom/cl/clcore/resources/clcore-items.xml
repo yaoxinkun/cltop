@@ -42,13 +42,9 @@
 			<value code="TWOBED" />
 		</enumtype>
 
-		<enumtype generate="true" code="AddonType" autocreate="true">
-			<value code="SWIMPOOL" />
-		</enumtype>
-
 		<enumtype generate="true" code="ClDiscountType" autocreate="true">
 			<value code="SALESCHANNEL" />
-			<value code="MEMBERLEVEL" />
+			<value code="MEMBERSHIP" />
 		</enumtype>
 
 		<enumtype generate="true" code="MemberShip" autocreate="true">
@@ -212,9 +208,6 @@
 				jaloclass="com.chimelong.core.jalo.ParkAddonProduct">
 				<deployment table="ParkAddonProduct" typecode="30008"></deployment>
 				<attributes>
-					<attribute qualifier="addonType" type="AddonType">
-						<persistence type="property" />
-					</attribute>
 				</attributes>
 			</itemtype>
 
@@ -364,9 +357,6 @@
 				jaloclass="com.chimelong.core.jalo.HotelAddonProduct">
 				<deployment table="HotelAddonProduct" typecode="30020"></deployment>
 				<attributes>
-					<attribute qualifier="addonType" type="AddonType">
-						<persistence type="property" />
-					</attribute>
 				</attributes>
 			</itemtype>
 
