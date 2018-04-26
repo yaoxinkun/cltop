@@ -1,0 +1,49 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Product Localisations
+ 
+# Macros / Replacement Parameter definitions
+$productCatalog=clProductCatalog
+$productCatalogName=cl Product Catalog
+ 
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+ 
+# Language
+$lang=en
+ 
+# Update allProducts with localisations
+INSERT_UPDATE AccommodationProduct ; code[unique=true] ; name[lang=$lang] 
+                                   ; lhf001            ; TigerTypeRoom    
+                                   
+INSERT_UPDATE AccommodationNetProduct ; code[unique=true] ; name[lang=$lang] 
+                                      ; lhf0011           ; TigerTypeNetRoom 
+                                      
+INSERT_UPDATE ParkMealProduct ; code[unique=true] ; name[lang=$lang] 
+                              ; pm001             ; ParkMeal1        
+                              
+INSERT_UPDATE ParkAddonProduct ; code[unique=true] ; name[lang=$lang] 
+                               ; pa001             ; ParkAddon1       
+                               
+INSERT_UPDATE HotelMealProduct ; code[unique=true] ; name[lang=$lang] 
+                               ; hm001             ; HotelMeal1       
+                               
+INSERT_UPDATE HotelAddonProduct ; code[unique=true] ; name[lang=$lang] 
+                                ; ha001             ; HotelAddon1      
+
+INSERT_UPDATE ParkBundleProduct ; code[unique=true] ; name[lang=$lang] 
+                                ; ha002             ; HappyWorld+AnimalWordWeekdaysBundle   
+                                ; hb002             ; HappyWorld+BirdWordWeekdaysBundle      
+                                ; ha0021            ; HappyWorld+AnimalWordWeekenddaysBundle    
+                                ; hb0021            ; HappyWorld+BirdWorddWeekenddaysBundle     
+
+INSERT_UPDATE HotelBundleProduct ; code[unique=true] ; name[lang=$lang] 
+                                 ; cjt21             ; ChimelongHotelBundle1           
+                                 

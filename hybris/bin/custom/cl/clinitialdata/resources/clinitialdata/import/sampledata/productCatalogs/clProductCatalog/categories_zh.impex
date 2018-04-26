@@ -1,0 +1,44 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Categories
+ 
+# Macros / Replacement Parameter definitions
+$productCatalog=clProductCatalog
+$productCatalogName=cl Product Catalog
+ 
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+ 
+# Language
+$lang=zh
+ 
+UPDATE Category ; code[unique=true] ; $catalogVersion ; description[lang=$lang] ; name[lang=$lang] 
+                ; gz                ;                 ;                         ; 广州               
+                ; zh                ;                 ;                         ; 珠海               
+                ; park              ;                 ;                         ; 乐园               
+                ; perform           ;                 ;                         ; 表演               
+                ; hotel             ;                 ;                         ; 酒店               
+                ; restaurant        ;                 ;                         ; 餐厅               
+                ; retail            ;                 ;                         ; 零售               
+                ; park1             ;                 ;                         ; 广州长隆欢乐世界         
+                ; park2             ;                 ;                         ; 广州长隆野生动物园        
+                ; park3             ;                 ;                         ; 广州长隆水上乐园         
+                ; park4             ;                 ;                         ; 广州长隆飞鸟乐园         
+                ; perform1          ;                 ;                         ; 广州长隆国际大马戏        
+                ; hotel1            ;                 ;                         ; 广州长隆酒店           
+                ; hotel2            ;                 ;                         ; 广州长隆熊猫酒店         
+                ; hotel3            ;                 ;                         ; 广州长隆香江酒店         
+                ; park5             ;                 ;                         ; 珠海长隆海洋王国         
+                ; perform2          ;                 ;                         ; 珠海长隆横琴国际马戏城      
+                ; hotel4            ;                 ;                         ; 珠海长隆横琴湾酒店        
+                ; hotel5            ;                 ;                         ; 珠海长隆企鹅酒店         
+                ; hotel6            ;                 ;                         ; 珠海长隆马戏酒店         
+                ; hotel7            ;                 ;                         ; 珠海长隆迎海公寓         
+                ; baihu             ;                 ;                         ; 白虎餐厅             

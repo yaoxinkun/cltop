@@ -1,0 +1,128 @@
+def config = {
+	localProperties {
+	    property 'baiduApiKey', ''
+        property 'website.clb2c.http', 'http://cl.local:9001/clb2c'
+        property 'website.clb2c.https', 'https://cl.local:9002/clb2c'
+        property 'website.clta.http', 'http://cl.local:9001/clta'
+        property 'website.clta.https', 'https://cl.local:9002/clta'
+        property 'website.clota.http', 'http://cl.local:9001/clota'
+        property 'website.clota.https', 'https://cl.local:9002/clota'       
+	}
+
+	extensions {
+		extName 'hmc'
+        extName 'mcc'
+        extName 'adaptivesearchsolr'
+        extName 'adaptivesearchbackoffice'
+        extName 'adaptivesearchwebservices'
+        extName 'adaptivesearchsamplesaddon'
+        extName 'b2bcommercebackoffice'
+        extName 'solrfacetsearchbackoffice'
+
+        extName 'yacceleratorcockpits'
+        extName 'yacceleratorinitialdata'
+        extName 'yacceleratorfulfilmentprocess'
+        extName 'orderselfserviceaddon'
+        extName 'solrserver'
+
+        extName 'acceleratorwebservicesaddon'
+        extName 'chineseaddressaddon'
+        extName 'chinesecommerceorgaddressaddon'
+        extName 'chineseaddressbackoffice'
+        extName 'b2bacceleratoraddon'
+        extName 'commerceorgaddon'
+        extName 'commerceorgsamplesaddon'
+
+        extName 'customersupportbackoffice'
+        extName 'customerticketingaddon'
+
+        extName 'rulebuilderbackoffice'
+        extName 'couponbackoffice'
+        extName 'droolsruleengineservices'
+        extName 'couponfacades'
+        extName 'promotionenginesamplesaddon'
+
+        extName 'textfieldconfiguratortemplatebackoffice'
+        extName 'textfieldconfiguratortemplateaddon'
+
+        extName 'cmswebservices'
+        extName 'smarteditwebservices'
+        extName 'cmssmarteditwebservices'
+        extName 'permissionswebservices'
+        extName 'smarteditaddon'
+        extName 'cmssmartedit'
+		extName 'cmsbackoffice'
+        extName 'assistedservicestorefront'
+		extName 'assistedservicewebservices'
+
+        extName 'previewpersonalizationweb'
+        extName 'personalizationcmsweb'
+        extName 'personalizationsmartedit'
+        extName 'personalizationpromotionssmartedit'
+        extName 'personalizationsampledataaddon'
+        extName 'personalizationpromotions'
+        extName 'personalizationpromotionsweb'
+        extName 'personalizationservicesbackoffice'
+        extName 'personalizationpromotionsbackoffice'
+        extName 'personalizationcmsbackoffice'
+        extName 'personalizationsearchbackoffice'
+        extName 'personalizationsearchsmartedit'
+        extName 'personalizationsearchweb'
+        extName 'personalizationsearchsamplesaddon'
+
+        extName 'assistedserviceatddtests'
+        extName 'promotionengineatddtests'
+        extName 'textfieldconfiguratortemplateatddtests'
+        extName 'chinesestoreaddon'
+
+		extName 'consignmenttrackingaddon'
+        extName 'consignmenttrackingmock'
+        extName 'consignmenttrackingbackoffice'
+        extName 'consignmenttrackingoccaddon'
+
+
+        extName 'clcockpits'
+	    extName 'clinitialdata'
+	    extName 'clfulfilmentprocess'
+        extName 'clcore'
+        extName 'clfacades'
+	    extName 'clstorefront'
+
+	}
+}
+
+task setup << {
+	apply plugin: 'installer-platform-plugin'
+	apply plugin: 'installer-addon-plugin'
+	def pl = platform(config)
+	pl.setup()
+
+	pl.project.addons {
+       names "chineseaddressaddon,chinesecommerceorgaddressaddon,b2bacceleratoraddon,commerceorgaddon,chinesestoreaddon,commerceorgsamplesaddon,promotionenginesamplesaddon,textfieldconfiguratortemplateaddon,smarteditaddon,assistedservicestorefront,customerticketingaddon,orderselfserviceaddon,consignmenttrackingaddon,adaptivesearchsamplesaddon,pcmbackofficesamplesaddon,personalizationsearchsamplesaddon"
+ 
+		template "yacceleratorstorefront"
+		storeFronts "clstorefront"
+		platform pl
+	}
+
+	pl.project.addons {
+		names "acceleratorwebservicesaddon"
+		template "ycommercewebservices"
+		storeFronts "ycommercewebservices"
+		platform pl
+	}
+}
+
+task initialize << {
+    apply plugin: 'installer-platform-plugin'
+    def pl = platform(config)
+    pl.build()
+    pl.initialize()
+}
+
+
+task start << {
+    apply plugin: 'installer-platform-plugin'
+    def pl = platform(config)
+    pl.start()
+}

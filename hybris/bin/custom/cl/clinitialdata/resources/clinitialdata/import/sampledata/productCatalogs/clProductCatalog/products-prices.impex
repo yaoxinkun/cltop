@@ -1,0 +1,105 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Prices
+ 
+# Macros / Replacement Parameter definitions
+$productCatalog=clProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$prices=Europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+$baseProduct=baseProduct(code,$catalogVersion)
+$approved=approvalstatus(code)[default='approved']
+ 
+               
+INSERT_UPDATE PriceRow ; product(code[unique=true], $catalogVersion)[unique=true] ; $catalogVersion ; unit(code[unique=true,default=pieces]) ; currency(isocode)[unique=true] ; minqtd ; unitFactor ; startTime[dateformat='yyyy-MM-dd'][unique=true] ; endTime[dateformat='yyyy-MM-dd'][unique=true] ; price ; &priceRowRef     
+                       ; h001                                                     ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 175   ; priceRow-h001    
+                       ; h002                                                     ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 200   ; priceRow-h002    
+                       ; h003                                                     ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 175   ; priceRow-h003    
+                       ; a001                                                     ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 175   ; priceRow-a001    
+                       ; a002                                                     ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 200   ; priceRow-a002    
+                       ; a003                                                     ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 175   ; priceRow-a003    
+                       ; b001                                                     ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 70    ; priceRow-b001    
+                       ; b002                                                     ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 95    ; priceRow-b002    
+                       ; b003                                                     ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 70    ; priceRow-b003    
+                       ; cv001a                                                   ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 230   ; priceRow-cv001a  
+                       ; cv001b                                                   ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 230   ; priceRow-cv001b  
+                       ; cv002a                                                   ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 300   ; priceRow-cv002a  
+                       ; cv002b                                                   ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 300   ; priceRow-cv002b  
+                       ; h0011                                                    ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 350   ; priceRow-h0011   
+                       ; h0021                                                    ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 400   ; priceRow-h0021   
+                       ; h0031                                                    ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 350   ; priceRow-h0031   
+                       ; a0011                                                    ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 350   ; priceRow-a0011   
+                       ; a0021                                                    ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 400   ; priceRow-a0021   
+                       ; a0031                                                    ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 350   ; priceRow-a0031   
+                       ; b0011                                                    ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 140   ; priceRow-b0011   
+                       ; b0021                                                    ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 190   ; priceRow-b0021   
+                       ; b0031                                                    ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 140   ; priceRow-b0031   
+                       ; cv0011a                                                  ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 460   ; priceRow-cv0011a 
+                       ; cv0011b                                                  ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 460   ; priceRow-cv0011b 
+                       ; cv0021a                                                  ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 600   ; priceRow-cv0021a 
+                       ; cv0021b                                                  ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 600   ; priceRow-cv0021b 
+                       ; ha002                                                    ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 400   ; priceRow-ha002   
+                       ; hb002                                                    ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 295   ; priceRow-hb002   
+                       ; ha0021                                                   ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 800   ; priceRow-ha0021  
+                       ; hb0021                                                   ;                 ; pieces                                 ; CNY                            ; 1      ; 1          ; 2018-01-01                                      ; 2018-12-31                                    ; 590   ; priceRow-hb0021  
+                       
+UPDATE Product ; code[unique=true] ; europe1Prices(&priceRowRef) ; $approved ; $catalogVersion 
+               ; h001              ; priceRow-h001               
+               ; h002              ; priceRow-h002               
+               ; h003              ; priceRow-h003               
+               ; a001              ; priceRow-a001               
+               ; a002              ; priceRow-a002               
+               ; a003              ; priceRow-a003               
+               ; b001              ; priceRow-b001               
+               ; b002              ; priceRow-b002               
+               ; b003              ; priceRow-b003               
+               ; cv001a            ; priceRow-cv001a             
+               ; cv001b            ; priceRow-cv001b             
+               ; cv002a            ; priceRow-cv002a             
+               ; cv002b            ; priceRow-cv002b             
+               ; h0011             ; priceRow-h0011              
+               ; h0021             ; priceRow-h0021              
+               ; h0031             ; priceRow-h0031              
+               ; a0011             ; priceRow-a0011              
+               ; a0021             ; priceRow-a0021              
+               ; a0031             ; priceRow-a0031              
+               ; b0011             ; priceRow-b0011              
+               ; b0021             ; priceRow-b0021              
+               ; b0031             ; priceRow-b0031              
+               ; cv0011a           ; priceRow-cv0011a            
+               ; cv0011b           ; priceRow-cv0011b            
+               ; cv0021a           ; priceRow-cv0021a            
+               ; cv0021b           ; priceRow-cv0021b            
+               
+INSERT_UPDATE ParkBundleProductEntry ; bundleProduct(code[unique=true], $catalogVersion)[unique=true] ; entryNum[unique=true] ; product(code, $catalogVersion) ; quantity ; $catalogVersion ; &bundleProductEntry        
+                                     ; ha002                                                          ; 1                     ; h002                           ; 1        ;                 ; bundleProductEntryha002-1  
+                                     ; ha002                                                          ; 2                     ; a002                           ; 1        ;                 ; bundleProductEntryha002-2  
+                                     ; hb002                                                          ; 1                     ; h002                           ; 1        ;                 ; bundleProductEntryhb002-1  
+                                     ; hb002                                                          ; 2                     ; b002                           ; 1        ;                 ; bundleProductEntryhb002-2  
+                                     ; ha0021                                                         ; 1                     ; h0021                          ; 1        ;                 ; bundleProductEntryha0021-1 
+                                     ; ha0021                                                         ; 2                     ; a0021                          ; 1        ;                 ; bundleProductEntryha0021-2 
+                                     ; hb0021                                                         ; 1                     ; h0021                          ; 1        ;                 ; bundleProductEntryhb0021-1 
+                                     ; hb0021                                                         ; 2                     ; b0021                          ; 1        ;                 ; bundleProductEntryhb0021-2 
+                                     
+INSERT_UPDATE HotelBundleProductEntry ; bundleProduct(code[unique=true], $catalogVersion)[unique=true] ; entryNum[unique=true] ; product(code, $catalogVersion) ; quantity ; $catalogVersion ; &bundleProductEntry            
+                                      ; cjt21                                                          ; 1                     ; lhf0011                        ; 1        ;                 ; hotelBundleProductEntrycjt21-1 
+                                      ; cjt21                                                          ; 2                     ; h002                           ; 1        ;                 ; hotelBundleProductEntrycjt21-2 
+                                      
+INSERT_UPDATE ClSimplePriceRow ; price ; bundleProductEntry(&bundleProductEntry)[unique=true] ; currency(isocode)[unique=true] ;  
+                               ; 200   ; bundleProductEntryha002-1                            ; CNY                            
+                               ; 200   ; bundleProductEntryha002-2                            ; CNY                            
+                               ; 200   ; bundleProductEntryhb002-1                            ; CNY                            
+                               ; 95    ; bundleProductEntryhb002-2                            ; CNY                            
+                               ; 400   ; bundleProductEntryha0021-1                           ; CNY                            
+                               ; 400   ; bundleProductEntryha0021-2                           ; CNY                            
+                               ; 400   ; bundleProductEntryhb0021-1                           ; CNY                            
+                               ; 190   ; bundleProductEntryhb0021-2                           ; CNY                            
+                               ; 1380  ; hotelBundleProductEntrycjt21-1                       ; CNY                            
+                               ; 200   ; hotelBundleProductEntrycjt21-2                       ; CNY                            

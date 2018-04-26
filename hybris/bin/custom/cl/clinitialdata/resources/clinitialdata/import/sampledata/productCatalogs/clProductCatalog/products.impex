@@ -1,0 +1,87 @@
+# -----------------------------------------------------------------------
+# [y] hybris Platform
+#
+# Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+#
+# This software is the confidential and proprietary information of SAP
+# ("Confidential Information"). You shall not disclose such Confidential
+# Information and shall use it only in accordance with the terms of the
+# license agreement you entered into with SAP.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Products
+# Macros / Replacement Parameter definitions
+$productCatalog=clProductCatalog
+$productCatalogName=cl Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories(code, $catalogVersion)
+$baseProduct=baseProduct(code,$catalogVersion)
+$approved=approvalstatus(code)[default='check']
+ 
+# Insert Products
+INSERT_UPDATE TicketProduct ; code[unique=true] ; $supercategories ; ticketType(code) ; customerType(code) ; dateStrategy(code)         ; variantType(code)   ; unit(code)[default=pieces] ; $catalogVersion 
+                            ; h001              ; park1            ; ENTRANCETICKET   ; CHILD              ; normalStrategyWeekDays     ;                     ;                            ;                 
+                            ; h002              ; park1            ; ENTRANCETICKET   ; ADULT              ; normalStrategyWeekDays     ;                     ;                            ;                 
+                            ; h003              ; park1            ; ENTRANCETICKET   ; ELDER              ; normalStrategyWeekDays     ;                     ;                            ;                 
+                            ; a001              ; park2            ; ENTRANCETICKET   ; CHILD              ; normalStrategyWeekDays     ;                     ;                            ;                 
+                            ; a002              ; park2            ; ENTRANCETICKET   ; ADULT              ; normalStrategyWeekDays     ;                     ;                            ;                 
+                            ; a003              ; park2            ; ENTRANCETICKET   ; ELDER              ; normalStrategyWeekDays     ;                     ;                            ;                 
+                            ; b001              ; park3            ; ENTRANCETICKET   ; CHILD              ; normalStrategyWeekDays     ;                     ;                            ;                 
+                            ; b002              ; park3            ; ENTRANCETICKET   ; ADULT              ; normalStrategyWeekDays     ;                     ;                            ;                 
+                            ; b003              ; park3            ; ENTRANCETICKET   ; ELDER              ; normalStrategyWeekDays     ;                     ;                            ;                 
+                            ; c001              ; perform1         ; CIRCUSTICKET     ; ADULT              ; normalStrategyWeekDays     ; CircusVariantTicket ;                            ;                 
+                            ; c002              ; perform2         ; CIRCUSTICKET     ; ADULT              ; normalStrategyWeekDays     ; CircusVariantTicket ;                            ;                 
+                            ; h0011             ; park1            ; ENTRANCETICKET   ; CHILD              ; normalStrategyWeekendsDays ;                     ;                            ;                 
+                            ; h0021             ; park1            ; ENTRANCETICKET   ; ADULT              ; normalStrategyWeekendsDays ;                     ;                            ;                 
+                            ; h0031             ; park1            ; ENTRANCETICKET   ; ELDER              ; normalStrategyWeekendsDays ;                     ;                            ;                 
+                            ; a0011             ; park2            ; ENTRANCETICKET   ; CHILD              ; normalStrategyWeekendsDays ;                     ;                            ;                 
+                            ; a0021             ; park2            ; ENTRANCETICKET   ; ADULT              ; normalStrategyWeekendsDays ;                     ;                            ;                 
+                            ; a0031             ; park2            ; ENTRANCETICKET   ; ELDER              ; normalStrategyWeekendsDays ;                     ;                            ;                 
+                            ; b0011             ; park3            ; ENTRANCETICKET   ; CHILD              ; normalStrategyWeekendsDays ;                     ;                            ;                 
+                            ; b0021             ; park3            ; ENTRANCETICKET   ; ADULT              ; normalStrategyWeekendsDays ;                     ;                            ;                 
+                            ; b0031             ; park3            ; ENTRANCETICKET   ; ELDER              ; normalStrategyWeekendsDays ;                     ;                            ;                 
+                            ; c0011             ; perform1         ; CIRCUSTICKET     ; ADULT              ; normalStrategyWeekendsDays ; CircusVariantTicket ;                            ;                 
+                            ; c0021             ; perform1         ; CIRCUSTICKET     ; ADULT              ; normalStrategyWeekendsDays ; CircusVariantTicket ;                            ;                 
+                            
+INSERT_UPDATE ParkBundleProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code)         ; unit(code)[default=pieces] 
+                                ; ha002             ;                 ; park1,park2      ; normalStrategyWeekDays     ;                            
+                                ; hb002             ;                 ; park1,park3      ; normalStrategyWeekDays     ;                            
+                                ; ha0021            ;                 ; park1,park2      ; normalStrategyWeekendsDays ;                            
+                                ; hb0021            ;                 ; park1,park3      ; normalStrategyWeekendsDays ;                            
+                                
+INSERT_UPDATE CircusVariantTicket ; code[unique=true] ; $catalogVersion ; $supercategories ; $baseProduct ; showTime(code) ; $approved 
+                                  ; cv001a            ;                 ; perform1         ; c001         ; cst1730        ;           
+                                  ; cv001b            ;                 ; perform1         ; c001         ; cst1930        ;           
+                                  ; cv002a            ;                 ; perform1         ; c002         ; cst1730        ;           
+                                  ; cv002b            ;                 ; perform1         ; c002         ; cst1930        ;           
+                                  ; cv0011a           ;                 ; perform1         ; c0011        ; cst1730        ;           
+                                  ; cv0011b           ;                 ; perform1         ; c0011        ; cst1930        ;           
+                                  ; cv0021a           ;                 ; perform1         ; c0021        ; cst1730        ;           
+                                  ; cv0021b           ;                 ; perform1         ; c0021        ; cst1930        ;           
+                                  
+INSERT_UPDATE ParkMealProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code) ; unit(code)[default=pieces] ; $approved 
+                              ; pm001             ;                 ;                  ;                    ;                            ;           
+                              
+INSERT_UPDATE ParkAddonProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code) ; unit(code)[default=pieces] ; $approved 
+                               ; pa001             ;                 ;                  ;                    ;                            ;           
+                               
+INSERT_UPDATE AccommodationProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code)     ; bedType(code) ; accommodationFacilities(code) ; unit(code)[default=pieces] ; variantType(code)       
+                                   ; lhf001            ;                 ; hotel1           ; normalStrategyWeekDays ;               ;                               ;                            ; AccommodationNetProduct 
+                                   
+INSERT_UPDATE AccommodationNetProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; $baseProduct ; $approved 
+                                      ; lhf0011           ;                 ; hotel1           ; lhf001       ;           
+                                      
+INSERT_UPDATE HotelMealProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code) ; unit(code)[default=pieces] ; $approved 
+                               ; hm001             ;                 ;                  ;                    ;                            ;           
+                               
+INSERT_UPDATE HotelAddonProduct ; code[unique=true] ; $catalogVersion ; $supercategories ; dateStrategy(code) ; unit(code)[default=pieces] ; $approved 
+                                ; ha001             ;                 ;                  ;                    ;                            ;           
+                                
+INSERT_UPDATE ParkBundleProduct ; code[unique=true] ; totalPrice ; $catalogVersion ; $approved 
+                                ; ha002             ; 400        ;                 ;           
+                                ; hb002             ; 295        ;                 ;           
+                                ; ha0021            ; 800        ;                 ;           
+                                ; hb0021            ; 590        ;                 ;           
+                                
+INSERT_UPDATE HotelBundleProduct ; code[unique=true] ; totalPrice ; $supercategories ; $catalogVersion ; $approved 
+                                 ; cjt21             ; 1499       ; hotel1           ;                 ;           
+                                 

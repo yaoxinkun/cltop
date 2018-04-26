@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+     <context:annotation-config/>
+
+	<!-- Spring Integration -->
+	<import resource="classpath:/clcore/integration/hot-folder-common-spring.xml"/>
+
+	<!-- SystemSetup for the ClCore -->
+	<bean id="acceleratorCoreSystemSetup" class="com.cl.core.setup.CoreSystemSetup"
+	       parent="abstractCoreSystemSetup"/>
+
+	<!-- Solr field value providers -->
+    <bean id="volumePriceComparator" class="com.cl.core.comparators.VolumeAwarePriceInformationComparator" scope="singleton"/>
+
+    <bean id="productVolumePricesProvider" class="com.cl.core.search.solrfacetsearch.provider.impl.ProductVolumePricesProvider"  parent="abstractPropertyFieldValueProvider">
+        <property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+        <property name="priceService" ref="priceService"/>
+    </bean>
+
+	<bean id="abstractCategoryCodeValueProvider" abstract="true"
+	      class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.CategoryCodeValueProvider"
+	      parent="abstractPropertyFieldValueProvider" >
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+	</bean>
+	
+	<bean id="abstractCategoryNameValueProvider" abstract="true"
+	      class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.CategoryNameValueProvider"
+	      parent="abstractPropertyFieldValueProvider" >
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+	</bean>
+
+	<bean id="image515ValueProvider" parent="abstractImageValueProvider" >
+		<property name="mediaFormat" value="515Wx515H"/>
+	</bean>
+	<bean id="image300ValueProvider" parent="abstractImageValueProvider" >
+		<property name="mediaFormat" value="300Wx300H"/>
+	</bean>
+	<bean id="image96ValueProvider" parent="abstractImageValueProvider" >
+		<property name="mediaFormat" value="96Wx96H"/>
+	</bean>
+	<bean id="image65ValueProvider" parent="abstractImageValueProvider" >
+		<property name="mediaFormat" value="65Wx65H"/>
+	</bean>
+	<bean id="image30ValueProvider" parent="abstractImageValueProvider" >
+		<property name="mediaFormat" value="30Wx30H"/>
+	</bean>
+
+	<bean id="productUrlValueProvider"
+	      class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.ProductUrlValueProvider"
+	      parent="abstractPropertyFieldValueProvider" >
+		<property name="urlResolver" ref="productModelUrlResolver"/>
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+		<property name="i18nService" ref="i18nService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+	</bean>
+
+	<bean id="promotionCodeValueProvider"
+	      class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.PromotionCodeValueProvider"
+	      parent="abstractPropertyFieldValueProvider" >
+		<property name="promotionsService" ref="promotionsService"/>
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+
+	<bean id="promotionImageValueProvider"
+	      class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.PrimaryPromotionImageValueProvider"
+	      parent="abstractPropertyFieldValueProvider" >
+		<property name="promotionsService" ref="promotionsService"/>
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+
+	<bean id="genderFacetDisplayNameProvider"
+	      class="com.cl.core.search.solrfacetsearch.provider.impl.GenderFacetDisplayNameProvider"
+	      >
+		<property name="enumerationService" ref="enumerationService"/>
+		<property name="i18nService" ref="i18nService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+	</bean>
+
+	<!--
+		Event listeners are singletons, therefore the dependency for a bean in tenant-scope
+		must be configured with a lookup method.
+	-->
+	<bean id="orderCancelledEventListener"
+	      class="com.cl.core.event.OrderCancelledEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="orderRefundEventListener"
+	      class="com.cl.core.event.OrderRefundEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="customerRegistrationEventListener"
+	      class="com.cl.core.event.RegistrationEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="forgottenPasswordEventListener"
+	      class="com.cl.core.event.ForgottenPasswordEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="submitOrderEventListener" class="com.cl.core.event.SubmitOrderEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="businessProcessService" ref="businessProcessService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="baseStoreService" ref="baseStoreService"/>
+	</bean>
+	<bean id="orderConfirmationEventListener"
+	      class="com.cl.core.event.OrderConfirmationEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="sendDeliveryMessageEventListener"
+	      class="com.cl.core.event.SendDeliveryMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="sendReadyForPickupMessageEventListener"
+	      class="com.cl.core.event.SendReadyForPickupMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="sendOrderPartiallyCanceledMessageEventListener"
+	      class="com.cl.core.event.SendOrderPartiallyCanceledMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="sendOrderPartiallyRefundedMessageEventListener"
+	      class="com.cl.core.event.SendOrderPartiallyRefundedMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="sendNotPickedUpConsignmentCanceledMessageEventListener"
+	      class="com.cl.core.event.SendNotPickedUpConsignmentCanceledMessageEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	<bean id="orderCompletedEventListener" class="com.cl.core.event.OrderCompletedEventListener" parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+
+	<!-- Process resources definition -->
+
+	<bean id="customerRegistrationEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/clcore/processes/customerRegistrationEmailProcess.xml"/>
+	</bean>
+	<bean id="forgottenPasswordEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/clcore/processes/forgottenPasswordEmailProcess.xml"/>
+	</bean>
+	<bean id="orderConfirmationEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/clcore/processes/orderConfirmationEmailProcess.xml"/>
+	</bean>
+	<bean id="sendDeliveryEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/clcore/processes/sendDeliveryEmailProcess.xml"/>
+	</bean>
+	<bean id="sendReadyForPickupEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/clcore/processes/sendReadyForPickupEmailProcess.xml"/>
+	</bean>
+	<bean id="sendOrderCancelledEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/clcore/processes/sendOrderCancelledEmailProcess.xml"/>
+	</bean>
+	<bean id="sendOrderRefundEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/clcore/processes/sendOrderRefundEmailProcess.xml"/>
+	</bean>
+	<bean id="sendOrderPartiallyCanceledEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/clcore/processes/sendOrderPartiallyCanceledEmailProcess.xml"/>
+	</bean>
+	<bean id="sendOrderPartiallyRefundedEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/clcore/processes/sendOrderPartiallyRefundedEmailProcess.xml"/>
+	</bean>
+	<bean id="sendNotPickedUpConsignmentCanceledEmailProcessDefinitionResource"
+	      class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/clcore/processes/sendNotPickedUpConsignmentCanceledEmailProcess.xml"/>
+	</bean>
+
+	<!-- Actions -->
+	<bean id="abstractAction" class="de.hybris.platform.processengine.action.AbstractAction"
+	      abstract="true">
+		<property name="modelService" ref="modelService"/>
+		<property name="processParameterHelper" ref="processParameterHelper"/>
+	</bean>
+
+	<bean id="sendEmail" class="de.hybris.platform.acceleratorservices.process.email.actions.SendEmailAction"
+	       parent="abstractAction">
+		<property name="emailService" ref="emailService"/>
+	</bean>
+
+	<bean id="abstractGenerateEmailAction" class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+	      parent="abstractAction" abstract="true">
+		<property name="modelService" ref="modelService"/>
+		<property name="cmsEmailPageService" ref="cmsEmailPageService"/>
+		<property name="contextResolutionStrategy" ref="processContextResolutionStrategy"/>
+		<property name="emailGenerationService" ref="emailGenerationService"/>
+	</bean>
+
+	<bean id="generateCustomerRegistrationEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="CustomerRegistrationEmailTemplate"/>
+	</bean>
+
+	<bean id="generateForgottenPasswordEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="ForgottenPasswordEmailTemplate"/>
+	</bean>
+
+	<bean id="generateOrderConfirmationEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="OrderConfirmationEmailTemplate"/>
+	</bean>
+
+	<bean id="generateDeliverySentEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="DeliverySentEmailTemplate"/>
+	</bean>
+
+	<bean id="generateReadyForPickupEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="ReadyForPickupEmailTemplate"/>
+	</bean>
+
+	<bean id="generateOrderCancelledEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="OrderCancelledEmailTemplate"/>
+	</bean>
+
+	<bean id="generateOrderRefundEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="OrderRefundEmailTemplate"/>
+	</bean>
+
+	<bean id="generateOrderPartiallyCanceledEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="OrderPartiallyCanceledEmailTemplate"/>
+	</bean>
+	<bean id="generateOrderPartiallyRefundedEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="OrderPartiallyRefundedEmailTemplate"/>
+	</bean>
+	<bean id="generateNotPickedUpConsignmentCanceledEmail" parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName" value="NotPickedUpConsignmentCanceledEmailTemplate"/>
+	</bean>
+
+	<bean id="removeSentEmail"
+	      class="de.hybris.platform.acceleratorservices.process.email.actions.RemoveSentEmailAction"
+	      parent="abstractAction">
+		<property name="modelService" ref="modelService"/>
+	</bean>
+
+    <bean id="markQuoteNotificationAsSent"
+          class="com.cl.core.actions.quote.MarkQuoteNotificationAsSentAction"
+          parent="abstractAction" abstract="true">
+        <property name="quoteService" ref="quoteService"/>
+    </bean>
+
+	<!-- Simple Suggestion Service -->
+	<alias alias="simpleSuggestionService" name="defaultSimpleSuggestionService"/>
+	<bean id="defaultSimpleSuggestionService"
+	      class="com.cl.core.suggestion.impl.DefaultSimpleSuggestionService" >
+		<property name="simpleSuggestionDao" ref="simpleSuggestionDao"/>
+	</bean>
+	<alias alias="simpleSuggestionDao" name="defaultSimpleSuggestionDao"/>
+	<bean id="defaultSimpleSuggestionDao"
+	      class="com.cl.core.suggestion.dao.impl.DefaultSimpleSuggestionDao"
+	      parent="abstractItemDao" >
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+
+	<bean id="mccSiteUrlHelper" class="com.cl.core.util.MccSiteUrlHelper" >
+		<property name="siteChannelValidationStrategy" ref="siteChannelValidationStrategy"/>
+		<property name="siteBaseUrlResolutionService" ref="siteBaseUrlResolutionService"/>
+		<property name="cmsSiteService" ref="cmsSiteService"/>
+	</bean>
+
+	<!-- Sales quote process actions -->
+
+	<!-- quote-->
+	<bean id="quoteBuyerSubmitEventListener" class="com.cl.core.event.QuoteBuyerSubmitEventListener"
+		  parent="abstractEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+
+	<bean id="quoteSalesRepSubmitEventListener" class="com.cl.core.event.QuoteSalesRepSubmitEventListener"
+		  parent="abstractEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+
+	<bean id="quoteSellerApprovalSubmitEventListener" class="com.cl.core.event.QuoteSellerApprovalSubmitEventListener"
+		  parent="abstractEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+
+	<bean id="quoteBuyerOrderPlacedEventListener" class="com.cl.core.event.QuoteBuyerOrderPlacedEventListener"
+		  parent="abstractEventListener">
+		<property name="commerceQuoteService" ref="commerceQuoteService"/>
+		<property name="modelService" ref="modelService"/>
+	</bean>
+
+	<bean id="quoteToExpireSoonEventListener" class="com.cl.core.event.QuoteToExpireSoonEventListener"
+		  parent="abstractEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+	
+	<bean id="quoteExpiredEventListener" class="com.cl.core.event.QuoteExpiredEventListener"
+		  parent="abstractEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+
+	<bean id="quoteCancelEventListener" class="com.cl.core.event.QuoteCancelEventListener"
+		  parent="abstractEventListener">
+		<property name="modelService" ref="modelService"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+	</bean>
+
+	<bean id="quoteBuyerProcessDefinitionResource"
+		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/clcore/processes/quote/quote-buyer-process.xml"/>
+	</bean>
+
+	<bean id="quoteSalesRepProcessDefinitionResource"
+		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/clcore/processes/quote/quote-salesrep-process.xml"/>
+	</bean>
+
+
+	<bean id="quoteSellerApprovalProcessDefinitionResource"
+		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/clcore/processes/quote/quote-seller-approval-process.xml"/>
+	</bean>
+	
+	<bean id="quotePostCancellationProcessDefinitionResource"
+		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/clcore/processes/quote/quote-post-cancellation-process.xml"/>
+	</bean>
+
+	<bean id="quoteToExpireSoonProcessDefinitionResource"
+		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/clcore/processes/quote/quote-to-expire-soon-email-process.xml"/>
+	</bean>
+	
+	<bean id="quoteExpiredProcessDefinitionResource"
+		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+		<property name="resource" value="classpath:/clcore/processes/quote/quote-expired-email-process.xml"/>
+	</bean>
+
+	<!-- Quotes email notification jobs -->
+	<bean id="quoteToExpireSoonJobPerformable"
+		  class="com.cl.core.job.QuoteToExpireSoonJobPerformable"
+		  parent="abstractJobPerformable">
+		<property name="supportedQuoteStatuses">
+			<set value-type="de.hybris.platform.core.enums.QuoteState">
+				<value>BUYER_OFFER</value>
+			</set>
+		</property>
+		<property name="commerceQuoteDao" ref="commerceQuoteDao"/>
+		<property name="eventService" ref="eventService" />
+		<property name="configurationService" ref="configurationService" />
+		<property name="timeService" ref="timeService" />
+	</bean>
+	
+	<bean id="quoteExpiredJobPerformable"
+		  class="com.cl.core.job.QuoteExpiredJobPerformable"
+		  parent="abstractJobPerformable">
+		<property name="supportedQuoteStatuses">
+			<set value-type="de.hybris.platform.core.enums.QuoteState">
+				<value>BUYER_OFFER</value>
+			</set>
+		</property>
+		<property name="commerceQuoteDao" ref="commerceQuoteDao"/>
+		<property name="eventService" ref="eventService" />
+		<property name="timeService" ref="timeService" />
+	</bean>
+
+	<import resource="/clcore/processes/quote/quote-buyer-process-spring.xml"/>
+	<import resource="/clcore/processes/quote/quote-salesrep-process-spring.xml"/>
+	<import resource="/clcore/processes/quote/quote-seller-approval-process-spring.xml"/>
+	
+	<import resource="/clcore/processes/quote/quote-to-expire-soon-email-process-spring.xml"/>
+	<import resource="/clcore/processes/quote/quote-expired-email-process-spring.xml"/>
+
+	<import resource="/clcore/processes/quote/quote-post-cancellation-process-spring.xml"/>
+	
+	<!-- Customer cleanup -->
+	<alias name="defaultCustomerCleanupRelatedObjectsAction" alias="customerCleanupRelatedObjectsAction"/>
+	<bean id="defaultCustomerCleanupRelatedObjectsAction" class="com.cl.core.retention.impl.DefaultCustomerCleanupRelatedObjectsAction" parent="abstractExtensibleRemoveCleanupAction">
+		<property name="itemCleanupHooks" ref="customerCleanupHooks"/>
+	</bean>
+	
+	<!-- Cleanup the customers not owning any order currently and the current date has past deactivation date+retention date. Also removes customers audit records. -->
+	<alias name="defaultCustomerNotOwningOrdersRemoveCleanupAction" alias="customerNotOwningOrdersRemoveCleanupAction"/>
+	<bean id="defaultCustomerNotOwningOrdersRemoveCleanupAction" class="de.hybris.platform.retention.impl.DefaultExtensibleRemoveCleanupAction" parent="abstractExtensibleRemoveCleanupAction">
+		<property name="itemCleanupHooks" ref="customerCleanupHooks"/>
+	</bean>
+	
+	<!-- Order cleanup -->
+	<!-- Cleanup the order related objects and then remove order and its audit records. -->
+	<alias name="defaultOrderRemoveCleanupAction" alias="orderRemoveCleanupAction"/>
+	<bean id="defaultOrderRemoveCleanupAction" class="de.hybris.platform.retention.impl.DefaultExtensibleRemoveCleanupAction" parent="abstractExtensibleRemoveCleanupAction">
+		<property name="itemCleanupHooks" ref="orderCleanupHooks"/>
+	</bean>
+
+	<!-- CsTicket Remove action -->
+	<alias name="defaultCSTicketRemoveCleanupAction" alias="csTicketRemoveCleanupAction"/>
+	<bean id="defaultCSTicketRemoveCleanupAction" class="de.hybris.platform.retention.impl.DefaultExtensibleRemoveCleanupAction" parent="abstractExtensibleRemoveCleanupAction">
+		<property name="itemCleanupHooks" ref="csTicketCleanupHooks"/>
+	</bean>
+
+	<!-- CsTicket Stagnation action -->
+	<alias name="defaultCSTicketStagnationAction" alias="csTicketStagnationAction"/>
+	<bean id="defaultCSTicketStagnationAction" class="com.cl.core.retention.impl.DefaultCSTicketStagnationAction" parent="abstractExtensibleRemoveCleanupAction">
+		<property name="itemCleanupHooks" ref="csTicketRetentionHooks"/>
+		<property name="ticketBusinessService" ref="ticketBusinessService"/>
+	</bean>
+</beans>
